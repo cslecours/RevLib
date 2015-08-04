@@ -9,7 +9,7 @@ namespace RevLib
     {
         private Stack<T> undoStack;
         private Stack<T> redoStack;
-        private T _initialState;
+        private T initialState;
 
         public SnapshotContainer()
         {
@@ -36,7 +36,7 @@ namespace RevLib
         {
             if (!undoStack.Any())
             {
-                return _initialState;
+                return initialState;
             }
 
             var previous = undoStack.Pop();
@@ -44,7 +44,7 @@ namespace RevLib
 
             redoStack.Push(previous);
 
-            return undoStack.Any() ? undoStack.Peek() : _initialState;
+            return undoStack.Any() ? undoStack.Peek() : initialState;
 
         }
 
@@ -85,7 +85,7 @@ namespace RevLib
 
         public void SetInitialState(T item)
         {
-            _initialState = item;
+            initialState = item;
         }
 
         public bool CanUndo()
